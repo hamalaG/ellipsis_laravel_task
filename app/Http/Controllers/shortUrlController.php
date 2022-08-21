@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Config\Auth;
 use App\RegisteredUsers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 
 
@@ -21,11 +22,11 @@ class shortUrlController extends Controller
     public function insert(Request $request)
     {
         $new_url = $request->input('original_url');
-        $short_url = base_convert($new_url,10,36); 
+        $short_url = 'http://localhost/'.str::random(6);
         $id = DB::table('users')->value('id');
          
         $data= [
-            'user_id'=>'1',
+            'user_id'=>$id,
             'original_url'=>$new_url,
             'short_url'=>$short_url,
             'created_at'=>carbon::now(),
@@ -37,8 +38,15 @@ class shortUrlController extends Controller
         }
 
 
-    public function show(Request $request)
+    public function index(Request $request)
     {
+        // dd($request);
+
+    }
+
+    public function manage_acc(Request $request)
+    {
+        dd($request);
     }
 
 }
