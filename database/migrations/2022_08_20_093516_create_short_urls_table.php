@@ -18,7 +18,6 @@ class CreateShortUrlsTable extends Migration
             $table->ForeignId('user_id')->nullable()->constrained();
             $table->text('original_url');
             $table->string('short_url')->nullable();
-            $table->string('visits')->default(0);
             $table->timestamps();
         });
     }

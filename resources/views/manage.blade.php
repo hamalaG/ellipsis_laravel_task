@@ -1,10 +1,10 @@
-<!-- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container-fluid" style="padding-left: 10%;">
 <div class="container">
-    <div class="row">
-        <div class="col-md-10" style="padding-left: 6%; height: 100%; position:fixed;">
+        <div class="col-md-10" >
             <div class="card">
                 <div class="card-header">
                     <div class="form-group row mb-0">
@@ -21,40 +21,66 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">NAME</th>
-                            <th scope="col">LONG URL</th>
+                    <table class="table table-hover ">
+                    <style>
+                        table {
+                            border: 1px solid #666;
+                            table-layout: fixed;
+                            width: 180px;
+                        }
+                        th,
+                        td {
+                            border: 1px solid #666;
+                            width: 90px;
+                            overflow: hidden;
+                        }
+                     </style>
+                <thead>  
+                    <tr>  
+                             <th scope="col">URL ID</th>
+                            <th  scope="col">LONG URL</th>
                             <th scope="col">SHORT URL</th>
                             <th scope="col">CREATED_ON</th>
-                            <th scope="col">ACTION</th>
-
-                          </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($users as $user )
+                            <th scope="col">EDIT</th>
+                            <th scope="col">DELETE</th>
+                            <th scope="col">VIEW</th>
+                    </tr>  
+                </thead>  
+                <tbody>  
+                @foreach ($users as $user )
 
                         <tr>
-                          <td>{{ $user->id}}</td>
-                          <td>{{ $user->name}}</td>
-                          <td>{{ $user->original_url }}</td>
-                          <td>{{ $user->short_url }}</td>
-                          <td>{{ $user->created_at}}</td>
-                          <td style="float:center; ">
-                                <span  style="margin-right:13px;"><i style="color:rgb(46, 99, 3);" class="fa fa-fw fa-eye"></i></span>
-                                <span style="margin-right:13px;"><i style="color: rgb(189, 3, 3);" class="fa fa-fw fa-trash"></i></span>
-                                <span ><i style="color: navy;" class="fa fa-fw fa-eraser"></i></span>
+                        <td>{{ $user->id}}</td>
+                        <td>{{ $user->original_url }}</td>
+                        <td>{{ $user->short_url }}</td>
+                        <td>{{ $user->created_at}}</td>
+                        <td style="float:center; ">
+                        <a href='/click_edit/{{ $user -> id }}'>
+                                <span ><i style="color: navy;" class="fa fa-fw fa-eraser"></i></span></a>
+                            </td>
+                            <td style="float:center; ">
+                             <form action="/click_delete/{{ $user->id }}">
+                                {{csrf_field()}}
+                                {{method_field('DELETE')}}
+                                <button type="submit" class="btn btn-danger">
+                                    <span style="margin-right:13px;"><i style="color: 'white';" class="fa fa-fw fa-trash"></i></span>
+                                    DELETE
+                                </button>
+                            </form>
+                                
+                            </td>
+                        <td style="float:center; ">
+                        <!-- <a href="/click_delete/".{{ $user->id }}> -->
+                                <span  style="margin-right:13px;"><i style="color:rgb(46, 99, 3);" class="fa fa-fw fa-eye"></i></span></a>
                             </td>
                         </tr>
                         </tbody>
-                        @endforeach
-                    </table>
+                    @endforeach  
+            </table>  
                 </div>
             </div>
         </div>
 </div>
     </div>
 
-@endsection -->
+@endsection

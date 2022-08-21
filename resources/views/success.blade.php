@@ -1,18 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-            @if (\Session::has('success'))
-    <div class="alert alert-success">
-        <ul>
-            <li>{!! \Session::get('success') !!}</li>
-        </ul>
-    </div>
-@endif
-        </div>
-    </div>
-</div>
+<<div class="container">  
+    <h1> Your short link </h1> 
+            <div class="card">  
+                <div class="card-header">  
+                <div class="col-sm-2">
+                        <a  href=".{{ $new_url }}">{{ $short_url }}</a>
+                    </div>
+                </div>  
+            </div>  
 @endsection

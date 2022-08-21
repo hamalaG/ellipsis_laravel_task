@@ -10,7 +10,7 @@
                         <div  class="ml-4 text-sm text-gray-700 dark:text-gray-500 " >HOME</div>
                         </div>
                             <div class="col-sm-2">
-                            <a  href="/manage_account">
+                            <a  href="{{ url('/manage_account') }}">
                             <button id="manage_button" type="button" class="btn btn-primary" style="margin-right:13px;">MANAGE ACCOUNT</button></a>
                             </div>
                     </div>
@@ -34,9 +34,9 @@
                         </div>
                         <div class="row mb-0">
                             <div class="col-md-3 offset-md-4"> 
-                            <a  href="/short}}">
-                                <button type="submit" class="btn btn-primary" style = " width='10';">
-                                            {{ __('short') }}
+                            <a  href="/short">
+                                <button type="submit" class="btn btn-block btn-success"  style="height:40px; width:200px; font-size:15px;">
+                                            {{ __('SHORTEN') }}
                                 </button>
                             </div>
                         </div>
