@@ -6,7 +6,7 @@
             <div class="card">  
                 <div class="card-header">  
                     <div class="col-sm-2">
-                        <a  href="/{{ $original_url }}">{{ $short_url }}</a>
+                        <a  href="{{url($original_url)}}">{{ $short_url }}</a>
                     </div>
                 </div>  
             </div>  

@@ -55,9 +55,9 @@
                         <td>{{ $user->short_url }}</td>
                         <td>{{ $user->created_at}}</td>
                         <td style="float:center; ">
-                        <form method="post" action="//click_edit/{{ $user -> id }}">
+                        <form method="get" action="/click_edit/{{ $user -> id }}">
                                 {{csrf_field()}}
-                                {{method_field('EDIT')}}
+                                {{method_field('GET')}}
                                 <button type="submit" class="btn btn-success">
                                     <span><i style="color: 'white';" class="fa fa-fw fa-eraser"></i></span>
                                     edit
@@ -75,9 +75,9 @@
                             </form>
                             </td>
                             <td style="float:center; ">
-                             <form method="post" action="/click_delete/{{ $user->id }}">
+                             <form method="get" action="/click_view/{{ $user->id }}">
                                 {{csrf_field()}}
-                                {{method_field('VIEW')}}
+                                {{method_field('GET')}}
                                 <button type="submit" class="btn btn-primary">
                                     <span ><i style="color: 'white';" class="fa fa-fw fa-eye"></i></span>
                                     view
