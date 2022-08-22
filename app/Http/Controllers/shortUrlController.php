@@ -24,7 +24,7 @@ class shortUrlController extends Controller
     {
         $original_url = $request->input('original_url');
         $short_url = 'http://localhost/'.str::random(6);
-        $id = DB::table('users')->value('id');
+        $id = auth()->user()->id;
          
         $data= [
             'user_id'=>$id,
@@ -35,8 +35,6 @@ class shortUrlController extends Controller
         ];
         
         DB::table('short_urls')->insert($data);
-
-        $user = shortUrl::find($id);
         return view("success",compact('short_url','original_url'));        
     }
 
@@ -45,7 +43,7 @@ class shortUrlController extends Controller
      */
     public function index(Request $request)
     {
-        $id = DB::table('users')->value('id');
+        $id = auth()->user()->id;
         $user = DB::select('select * from short_urls where user_id=?', [$id]);
 
         return view('manage',['users'=>$user]);
@@ -53,8 +51,7 @@ class shortUrlController extends Controller
 
     public function delete(shortUrl $id) {
         $id->delete();
-        echo "Record deleted successfully.";
-        echo 'Click Here to go back.';
+        return redirect()->back()->with('message', 'Deleted successfully');
         }
 
          /**
@@ -79,8 +76,9 @@ class shortUrlController extends Controller
      */
      public function view($id)
     {
-        $user = DB::select('select short_urls.*, users.* from short_urls
-        join users on short_urls.user_id=users.id
+        $user = DB::select('select users.*, short_urls.* from users
+        join short_urls
+        on users.id=short_urls.user_id
         where short_urls.id=?', [$id]);
         return view('viewurl', ['users' => $user]);
     }
