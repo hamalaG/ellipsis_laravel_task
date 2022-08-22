@@ -55,23 +55,34 @@
                         <td>{{ $user->short_url }}</td>
                         <td>{{ $user->created_at}}</td>
                         <td style="float:center; ">
-                        <a href='/click_edit/{{ $user -> id }}'>
-                                <span ><i style="color: navy;" class="fa fa-fw fa-eraser"></i></span></a>
+                        <form method="post" action="//click_edit/{{ $user -> id }}">
+                                {{csrf_field()}}
+                                {{method_field('EDIT')}}
+                                <button type="submit" class="btn btn-success">
+                                    <span><i style="color: 'white';" class="fa fa-fw fa-eraser"></i></span>
+                                    edit
+                                </button>
+                            </form>
                             </td>
                             <td style="float:center; ">
-                             <form action="/click_delete/{{ $user->id }}">
+                             <form method="post" action="/click_delete/{{ $user->id }}">
                                 {{csrf_field()}}
                                 {{method_field('DELETE')}}
                                 <button type="submit" class="btn btn-danger">
-                                    <span style="margin-right:13px;"><i style="color: 'white';" class="fa fa-fw fa-trash"></i></span>
-                                    DELETE
+                                    <span><i style="color: 'white';" class="fa fa-fw fa-trash"></i></span>
+                                    delete
                                 </button>
                             </form>
-                                
                             </td>
-                        <td style="float:center; ">
-                        <!-- <a href="/click_delete/".{{ $user->id }}> -->
-                                <span  style="margin-right:13px;"><i style="color:rgb(46, 99, 3);" class="fa fa-fw fa-eye"></i></span></a>
+                            <td style="float:center; ">
+                             <form method="post" action="/click_delete/{{ $user->id }}">
+                                {{csrf_field()}}
+                                {{method_field('VIEW')}}
+                                <button type="submit" class="btn btn-primary">
+                                    <span ><i style="color: 'white';" class="fa fa-fw fa-eye"></i></span>
+                                    view
+                                </button>
+                            </form>
                             </td>
                         </tr>
                         </tbody>

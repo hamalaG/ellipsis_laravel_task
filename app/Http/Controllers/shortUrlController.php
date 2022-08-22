@@ -22,20 +22,20 @@ class shortUrlController extends Controller
 
     public function insert(Request $request)
     {
-        $new_url = $request->input('original_url');
+        $original_url = $request->input('original_url');
         $short_url = 'http://localhost/'.str::random(6);
         $id = DB::table('users')->value('id');
          
         $data= [
             'user_id'=>$id,
-            'original_url'=>$new_url,
+            'original_url'=>$original_url,
             'short_url'=>$short_url,
             'created_at'=>carbon::now(),
             'updated_at'=>Carbon::now()        
         ];
         
         DB::table('short_urls')->insert($data);
-        return view("success",compact('short_url', 'new_url' ));        }
+        return view("success",compact('short_url', 'original_url' ));        }
 
 
     public function index(Request $request)
@@ -46,19 +46,18 @@ class shortUrlController extends Controller
         return view('manage',['users'=>$user]);
     }
 
-    public function delete($id) {
-        $id = DB::table('users')->value('id');
-        DB::delete('delete from short_urls where id = ?',[$id]);
+    public function delete(shortUrl $id) {
+        $id->delete();
         echo "Record deleted successfully.";
         echo 'Click Here to go back.';
         }
 
-        public function edit($id) {
-            $id = DB::table('users')->value('id');
-            DB::delete('delete from short_urls where id = ?',[$id]);
-            echo "Record deleted successfully.
-            ";
-            echo 'Click Here to go back.';
-            }
+    public function edit($id) {
+        // // $id = DB::table('users')->value('id');
+        // DB::delete('delete from short_urls where id = ?',[$id]);
+        // echo "Record deleted successfully.
+        // ";
+        // echo 'Click Here to go back.';
+        }
 
 }

@@ -25,4 +25,4 @@ Auth::routes();
     Route::get('/manage_account', [App\Http\Controllers\shortUrlController::class, 'index'])->name('manage_account');
     Route::get('/click_edit/{id}', [App\Http\Controllers\shortUrlController::class, 'edit'])->name('manage_account');
     Route::get('/click_delete/{id}', [App\Http\Controllers\shortUrlController::class, 'delete'])->name('manage_account');
-
+    Route::delete('/click_delete/{id}', [App\Http\Controllers\shortUrlController::class, 'delete'])->name('manage_account');
