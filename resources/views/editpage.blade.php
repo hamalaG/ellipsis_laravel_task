@@ -12,13 +12,18 @@
                     </div>
                     </div>
                 </div>
-
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div><br />
                 <div class="card-body">
                             <head>
                                 <title>Edit URL</title>
                             </head>
                             <body>
-                            @foreach ($users as $user )
                                 <form action = "/click_edit/{{ $user->id }}" method = "post">
                                     @csrf
                                     <table>
@@ -41,7 +46,6 @@
                                         </tr>
                                     </table>
                                 </form>
-                                @endforeach
                             </body>
             </div>
         </div>
